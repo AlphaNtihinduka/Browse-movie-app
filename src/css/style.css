@@ -1,0 +1,26 @@
+@import url(https://fonts.google.com/specimen/Outfit);
+body {
+    background-color: hsl(215, 32%, 27%);
+    font-family: 'Outfit';
+    font-size: 14px;
+    color: white;
+}
+
+.card {
+    display: flex;
+    background-color: hsl(216, 50%, 16%);
+    flex-direction: column;
+    border-radius: 15px;
+    width: 250px;
+    height: auto;
+    box-shadow: hsl(216, 50%, 16%);
+}
+
+img {
+    border-radius: 15px;
+    margin: 10px;
+}
+
+.contatin {
+    margin: 20px;
+}
