@@ -7,12 +7,12 @@ import {
   set,
   jump,
 } from './Home.controller.js';
+import { postLike } from './Likes.js';
 
 const movieLists = document.querySelector('.List');
 const pagination = document.querySelector('.Pagination');
 
 const HomePage = async () => {
-  // get('selectedPageNumber') ? '' : set('selectedPageNumber', 1);
   const movieListData = await getMovieHandler();
   if (movieListData.length < 0) {
     // ? could use spinner component here when fetching data
@@ -21,6 +21,21 @@ const HomePage = async () => {
     movieLists.innerHTML = renderMovieHandler(movieListData);
   }
   pagination.innerHTML = renderPaginationHandler(movieListData);
+  // - TODO: attach event listner to Like button
+
+  const likeButtons = document.querySelectorAll('.material-symbols-outlined');
+  likeButtons.forEach((likeButton) => {
+    likeButton.addEventListener('click', (event) => {
+      likeButton.classList.add('red');
+      // - TODO: also increment in the UI
+      postLike(event.target.id)
+        .then(() => {
+          window.location.reload();
+        });
+    });
+  });
+
+  // - TODO: end
   const previousButton = document.querySelector('.previousPage');
   const nextButton = document.querySelector('.nextPage');
   previousButton.addEventListener('click', prevPage);
