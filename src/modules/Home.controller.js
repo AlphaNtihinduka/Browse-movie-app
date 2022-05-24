@@ -1,13 +1,28 @@
 import defaultConfig from '../../config/default.js';
+import { getLike } from './Likes.js';
 
-export const getMovieHandler = async () => {
-  try {
-    const response = await fetch(defaultConfig.MOVE_API_URL);
-    const movieListsJson = await response.json();
-    return movieListsJson;
-  } catch (error) {
-    throw new Error(error);
-  }
+const createMoviewithLikeList = (movies, likes) => {
+    // - TODO: if there is no like just send the default data 
+    if (!likes.length) return movies;
+    //  TODO: if there is append the data
+    likes.forEach(element => {
+        let index = movies.findIndex(movie => movie.id === element.item_id);
+        movies[index]['likes'] = element.likes;
+    })
+
+}
+
+
+export const getMovieHandler = async() => {
+    try {
+        const moveList = await fetch(defaultConfig.MOVE_API_URL);
+        const likeList = await getLike();
+        const movieListsJson = await moveList.json();
+        createMoviewithLikeList(movieListsJson, likeList);
+        return movieListsJson;
+    } catch (error) {
+        throw new Error(error);
+    }
 };
 
 // - TODO: SET AND GET IN LOCAL STORAGE
@@ -15,33 +30,33 @@ export const get = (key) => JSON.parse(localStorage.getItem(key));
 export const set = (key, value) => localStorage.setItem(key, JSON.stringify(value));
 // - TODO: SET AND GET CURRENT ACTIVE DATA
 const currentData = (data) => {
-  const currentPage = get('currentPage') || 1;
-  const begin = (currentPage - 1) * defaultConfig.PAGINATION_ITEM_PER_PAGE;
-  const end = begin + defaultConfig.PAGINATION_ITEM_PER_PAGE;
-  return data.slice(begin, end);
+    const currentPage = get('currentPage') || 1;
+    const begin = (currentPage - 1) * defaultConfig.PAGINATION_ITEM_PER_PAGE;
+    const end = begin + defaultConfig.PAGINATION_ITEM_PER_PAGE;
+    return data.slice(begin, end);
 };
 
 export const paginationHandler = (movieList) => {
-  const maxPage = Math.ceil(movieList.length / defaultConfig.PAGINATION_ITEM_PER_PAGE);
-  set('maxPage', maxPage);
-  return maxPage;
+    const maxPage = Math.ceil(movieList.length / defaultConfig.PAGINATION_ITEM_PER_PAGE);
+    set('maxPage', maxPage);
+    return maxPage;
 };
 
 export const renderMovieHandler = (Database) => currentData(Database).map((movie) => (
-  ` <div class="tooltip">
+    ` <div class="tooltip">
         <div class="card" id=${movie.id}>
         <a href=${movie.officialSite}><img src=${movie.image.medium} alt="" /></a>
         <div class="container">
         <div class="card-header">
             <Label>${movie.name}</Label>
-            <span class="material-symbols-outlined">
+            <span  id=${movie.id} class="material-symbols-outlined">
             favorite 
             </span>
             </div>
         <ul>
             <li>${movie.premiered}</li>
             <li>${movie.averageRuntime} min</li>
-            <li>0 Likes</li>
+            <li>${movie.likes ? movie.likes : '0'} Likes</li>
             </ul>
             <button id=${movie.id}>Comment</button>
             <button id=${movie.id}>Reservation</button>
