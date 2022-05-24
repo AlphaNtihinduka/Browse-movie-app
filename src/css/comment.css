@@ -1,0 +1,33 @@
+.comment-popup {
+  background-color: orange;
+  padding: 10px 80px;
+}
+
+.popup-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: green;
+}
+
+.movie-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.right-detail {
+  padding-left: 30px;
+}
+
+#comment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-inputs {
+  margin-bottom: 15px;
+}
+
+.comment-btn {
+  align-self: flex-start;
+}
