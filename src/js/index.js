@@ -1,13 +1,13 @@
-import { getMovieHandler, renderMovieHandler } from '../../modules/movies.controller';
 import '../css/style.css';
-const movieLists = document.querySelector('.List');
-(async() => {
+import HomePage from '../../modules/Home.service';
 
-    let movieListData = await getMovieHandler();
-    console.log(movieListData);
-    movieListData.length < 0 ?
-        // ? could use spinner component here when fetching data 
-        movieLists.innerHTML = 'loading' :
-        movieLists.innerHTML = renderMovieHandler(movieListData);
+
+(async() => {
+    // TODO: HOME PAGE
+    HomePage();
+
+    // TODO: COMMENT 
+
+    // TODO: RESERVATION
 
 })();
