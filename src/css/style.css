@@ -20,7 +20,6 @@ body {
 }
 
 .card {
-    transition: all 2s;
     display: flex;
     background-color: hsl(216, 50%, 16%);
     flex-direction: column;
