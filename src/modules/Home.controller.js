@@ -1,4 +1,4 @@
-import defaultConfig from '../config/default.js';
+import defaultConfig from '../../config/default.js';
 
 export const getMovieHandler = async () => {
   try {
