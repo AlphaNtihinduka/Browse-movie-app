@@ -12,7 +12,9 @@ export const getMovieHandler = async() => {
 
 export const renderMovieHandler = (Database) =>
     Database.map(movie => (
-        ` <div class="card" id=${movie.id}>
+        ` 
+        <div class="tooltip">
+        <div class="card" id=${movie.id}>
    <a href=${movie.officialSite}><img src=${movie.image.medium} alt="" /></a>
     <div class="container">
         <div class="card-header">
@@ -29,5 +31,8 @@ export const renderMovieHandler = (Database) =>
         <button id=${movie.id}>Comment</button>
         <button id=${movie.id}>Reservation</button>
     </div>
-</div>`
+    </div>
+  <span class="tooltiptext">${JSON.stringify(movie.summary)}</span>
+</div>
+    `
     ));
