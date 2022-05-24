@@ -70,6 +70,15 @@ a {
   color: white;
 }
 
+footer {
+  height: 50px;
+  background: var(--soft-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+}
+
 @media only screen and (max-width: 800px) {
   .header-items {
     flex-direction: column;
