@@ -1,13 +1,11 @@
 import '../css/style.css';
-import HomePage from '../../modules/Home.service';
+import HomePage from '../../modules/Home.service.js';
 
+(async () => {
+  // TODO: HOME PAGE
+  HomePage();
 
-(async() => {
-    // TODO: HOME PAGE
-    HomePage();
+  // TODO: COMMENT
 
-    // TODO: COMMENT 
-
-    // TODO: RESERVATION
-
+  // TODO: RESERVATION
 })();
