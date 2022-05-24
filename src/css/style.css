@@ -32,14 +32,20 @@ body {
     box-shadow: 0 32px 97px 0 rgb(0 0 0 / 20%), 0 9px 4px 0 rgb(0 0 0 / 19%);
 }
 
-.contatin {
+.container {
     display: flex;
     flex-direction: column;
+}
+
+a {
+    text-align: center;
 }
 
 img {
     border-radius: 15px;
     margin: 10px;
+    width: auto;
+    align-self: center;
 }
 
 ul {
@@ -55,6 +61,7 @@ ul li:first-child {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-bottom: 5px;
 }
 
 .contatin {
