@@ -2,26 +2,26 @@ import defaultConfig from '../../config/default.js';
 import { getLike } from './Likes.js';
 
 const getMoviewithLikeList = (movies, likes) => {
-  // - TODO: if there is no like just send the default data
-  if (!likes.length) return movies;
-  //  TODO: if there is append the data
-  likes.forEach((element) => {
-    const index = movies.findIndex((movie) => movie.id === element.item_id);
-    if (index !== -1) movies[index].likes = element.likes;
-  });
-  return likes;
+    // - TODO: if there is no like just send the default data
+    if (!likes.length) return movies;
+    //  TODO: if there is append the data
+    likes.forEach((element) => {
+        const index = movies.findIndex((movie) => movie.id === element.item_id);
+        if (index !== -1) movies[index].likes = element.likes;
+    });
+    return likes;
 };
 
-export const getMovieHandler = async () => {
-  try {
-    const moveList = await fetch(defaultConfig.MOVE_API_URL);
-    const likeList = await getLike();
-    const movieListsJson = await moveList.json();
-    getMoviewithLikeList(movieListsJson, likeList);
-    return movieListsJson;
-  } catch (error) {
-    throw new Error(error);
-  }
+export const getMovieHandler = async() => {
+    try {
+        const moveList = await fetch(defaultConfig.MOVE_API_URL);
+        const likeList = await getLike();
+        const movieListsJson = await moveList.json();
+        getMoviewithLikeList(movieListsJson, likeList);
+        return movieListsJson;
+    } catch (error) {
+        throw new Error(error);
+    }
 };
 
 // - TODO: SET AND GET IN LOCAL STORAGE
@@ -29,20 +29,20 @@ export const get = (key) => JSON.parse(localStorage.getItem(key));
 export const set = (key, value) => localStorage.setItem(key, JSON.stringify(value));
 // - TODO: SET AND GET CURRENT ACTIVE DATA
 const currentData = (data) => {
-  const currentPage = get('currentPage') || 1;
-  const begin = (currentPage - 1) * defaultConfig.PAGINATION_ITEM_PER_PAGE;
-  const end = begin + defaultConfig.PAGINATION_ITEM_PER_PAGE;
-  return data.slice(begin, end);
+    const currentPage = get('currentPage') || 1;
+    const begin = (currentPage - 1) * defaultConfig.PAGINATION_ITEM_PER_PAGE;
+    const end = begin + defaultConfig.PAGINATION_ITEM_PER_PAGE;
+    return data.slice(begin, end);
 };
 
 export const paginationHandler = (movieList) => {
-  const maxPage = Math.ceil(movieList.length / defaultConfig.PAGINATION_ITEM_PER_PAGE);
-  set('maxPage', maxPage);
-  return maxPage;
+    const maxPage = Math.ceil(movieList.length / defaultConfig.PAGINATION_ITEM_PER_PAGE);
+    set('maxPage', maxPage);
+    return maxPage;
 };
 
 export const renderMovieHandler = (Database) => currentData(Database).map((movie) => (
-  ` <div class="tooltip">
+    ` <div class="tooltip">
         <div class="card" id=${movie.id}>
         <a href=${movie.officialSite}><img src=${movie.image.medium} alt="" /></a>
         <div class="container">
@@ -57,8 +57,8 @@ export const renderMovieHandler = (Database) => currentData(Database).map((movie
             <li>${movie.averageRuntime} min</li>
             <li>${movie.likes ? movie.likes : '0'} Likes</li>
             </ul>
-            <button id=${movie.id}>Comment</button>
-            <button id=${movie.id}>Reservation</button>
+            <button id=comment_${movie.id}>Comment</button>
+            <button id=reserve_${movie.id}>Reservation</button>
             </div>
     </div>
   <span class="tooltiptext">${JSON.stringify(movie.summary)}</span>
