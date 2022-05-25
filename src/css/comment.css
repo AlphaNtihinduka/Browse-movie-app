@@ -1,6 +1,7 @@
 .comment-popup {
+  display: none;
   background-color: hsl(216, 50%, 16%);
-  padding: 15px;
+  padding: 4px 15px;
   position: fixed;
   top: 0;
   left: 0;
@@ -15,7 +16,7 @@
   align-items: center;
   border: 2px solid hsl(178, 100%, 50%);
   position: relative;
-  font-size: 20px;
+  font-size: 12px;
   height: 95%;
 }
 
@@ -27,8 +28,8 @@
 }
 
 .popup-wrapper .img-container img {
-  height: 300px;
-  width: 250px;
+  height: 150px;
+  width: 200px;
 }
 
 .movie-details {
