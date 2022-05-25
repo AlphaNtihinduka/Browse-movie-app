@@ -1,9 +1,23 @@
 import defaultConfig from '../../config/default.js';
+import { getLike } from './Likes.js';
+
+const getMoviewithLikeList = (movies, likes) => {
+  // - TODO: if there is no like just send the default data
+  if (!likes.length) return movies;
+  //  TODO: if there is append the data
+  likes.forEach((element) => {
+    const index = movies.findIndex((movie) => movie.id === element.item_id);
+    if (index !== -1) movies[index].likes = element.likes;
+  });
+  return likes;
+};
 
 export const getMovieHandler = async () => {
   try {
-    const response = await fetch(defaultConfig.MOVE_API_URL);
-    const movieListsJson = await response.json();
+    const moveList = await fetch(defaultConfig.MOVE_API_URL);
+    const likeList = await getLike();
+    const movieListsJson = await moveList.json();
+    getMoviewithLikeList(movieListsJson, likeList);
     return movieListsJson;
   } catch (error) {
     throw new Error(error);
@@ -34,17 +48,17 @@ export const renderMovieHandler = (Database) => currentData(Database).map((movie
         <div class="container">
         <div class="card-header">
             <Label>${movie.name}</Label>
-            <span class="material-symbols-outlined">
+            <span  id=${movie.id} class="material-symbols-outlined ">
             favorite 
             </span>
             </div>
         <ul>
             <li>${movie.premiered}</li>
             <li>${movie.averageRuntime} min</li>
-            <li>0 Likes</li>
+            <li id=like_${movie.id}>${movie.likes ? movie.likes : '0'} Likes</li>
             </ul>
-            <button id=${movie.id}>Comment</button>
-            <button id=${movie.id}>Reservation</button>
+            <button id=comment_${movie.id}>Comment</button>
+            <button id=reserve_${movie.id}>Reservation</button>
             </div>
     </div>
   <span class="tooltiptext">${JSON.stringify(movie.summary)}</span>

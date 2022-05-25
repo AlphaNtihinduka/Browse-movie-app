@@ -61,7 +61,7 @@ ul li:first-child {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .contatin {
@@ -70,6 +70,7 @@ ul li:first-child {
 
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  cursor: pointer;
 }
 
 button {
@@ -219,6 +220,10 @@ footer {
   bottom: 0;
   right: 0;
   left: 0;
+}
+
+.red {
+  color: red;
 }
 
 @media only screen and (max-width: 800px) {
