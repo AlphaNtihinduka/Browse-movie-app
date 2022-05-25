@@ -8,6 +8,7 @@ import {
   jump,
 } from './Home.controller.js';
 import { postLike } from './Likes.js';
+import reservations from './reservation.service.js';
 
 const movieLists = document.querySelector('.List');
 const pagination = document.querySelector('.Pagination');
@@ -34,6 +35,8 @@ const HomePage = async () => {
         });
     });
   });
+
+  reservations();
 
   // - TODO: end
   const previousButton = document.querySelector('.previousPage');
