@@ -9,3 +9,5 @@ import HomePage from '../modules/Home.service.js';
 
   // TODO: RESERVATION
 })();
+
+import { addComment, getData, hidePopup } from '../modules/comments';
