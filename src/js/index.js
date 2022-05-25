@@ -1,2 +1,2 @@
 import '../css/style.css';
-import addComment from './modules/comment.js';
+import {addComment, getData} from './modules/comment.js';
