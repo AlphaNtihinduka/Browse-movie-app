@@ -1,5 +1,6 @@
 import defaultConfig from '../../config/default.js';
 import { getLike } from './Likes.js';
+import MovieCounter from './Home.counter.js';
 
 const getMoviewithLikeList = (movies, likes) => {
   // - TODO: if there is no like just send the default data
@@ -10,6 +11,13 @@ const getMoviewithLikeList = (movies, likes) => {
     if (index !== -1) movies[index].likes = element.likes;
   });
   return likes;
+};
+
+export const homeMovieCounter = () => {
+  const movieCounter = document.querySelectorAll('.card');
+  const movieItems = MovieCounter(movieCounter);
+  const displayMovieCounter = document.querySelector('#movie-counter');
+  displayMovieCounter.innerHTML = `Movies(${movieItems})`;
 };
 
 export const getMovieHandler = async () => {
@@ -55,10 +63,10 @@ export const renderMovieHandler = (Database) => currentData(Database).map((movie
         <ul>
             <li>${movie.premiered}</li>
             <li>${movie.averageRuntime} min</li>
-            <li>${movie.likes ? movie.likes : '0'} Likes</li>
+            <li id=like_${movie.id}>${movie.likes ? movie.likes : '0'} Likes</li>
             </ul>
-            <button id=${movie.id}>Comment</button>
-            <button id="reserve_${movie.id}" class="reservation">Reservation</button>
+            <button id=comment_${movie.id}>Comment</button>
+            <button id=reserve_${movie.id} class="reservation">Reservation</button>
             </div>
     </div>
   <span class="tooltiptext">${JSON.stringify(movie.summary)}</span>

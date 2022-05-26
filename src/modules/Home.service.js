@@ -6,6 +6,7 @@ import {
   renderPaginationHandler,
   set,
   jump,
+  homeMovieCounter,
 } from './Home.controller.js';
 import { postLike } from './Likes.js';
 import reservations from './reservation.service.js';
@@ -31,10 +32,15 @@ const HomePage = async () => {
       // - TODO: also increment in the UI
       postLike(event.target.id)
         .then(() => {
-          window.location.reload();
+          const a = document.querySelector(`#like_${event.target.id}`);
+          let previousValue = parseInt(a.innerHTML.split(' ')[0], 10);
+          previousValue += 1;
+          a.innerHTML = `${previousValue} Likes</p>`;
         });
     });
   });
+  // - TODO render counter
+  homeMovieCounter();
 
   reservations();
 
