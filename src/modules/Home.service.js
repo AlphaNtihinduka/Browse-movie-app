@@ -6,6 +6,7 @@ import {
   renderPaginationHandler,
   set,
   jump,
+  homeMovieCounter,
 } from './Home.controller.js';
 import { postLike } from './Likes.js';
 
@@ -37,6 +38,8 @@ const HomePage = async () => {
         });
     });
   });
+  // - TODO render counter
+  homeMovieCounter();
 
   // - TODO: end
   const previousButton = document.querySelector('.previousPage');
