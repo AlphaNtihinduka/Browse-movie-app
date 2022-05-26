@@ -1,4 +1,1 @@
-export default () => {
-    const movieCounter = document.querySelectorAll('.card');
-    return movieCounter.length;
-}
+export default (movieCounter) => movieCounter.length;

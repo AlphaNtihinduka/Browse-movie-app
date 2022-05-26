@@ -14,7 +14,8 @@ const getMoviewithLikeList = (movies, likes) => {
 };
 
 export const homeMovieCounter = () => {
-    let movieItems = MovieCounter();
+    const movieCounter = document.querySelectorAll('.card');
+    let movieItems = MovieCounter(movieCounter);
     const displayMovieCounter = document.querySelector('#movie-counter');
     displayMovieCounter.innerHTML = `Movies(${movieItems})`;
 }
