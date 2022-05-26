@@ -44,11 +44,11 @@ export const paginationHandler = (movieList) => {
 export const renderMovieHandler = (Database) => currentData(Database).map((movie) => (
   ` <div class="tooltip">
         <div class="card" id=${movie.id}>
-        <a href=${movie.officialSite}><img src=${movie.image.medium} alt="" /></a>
+        <a href=${movie.officialSite}><img src=${movie.image.medium} alt="" class="movie-img  "/></a>
         <div class="container">
         <div class="card-header">
             <Label>${movie.name}</Label>
-            <span  id=${movie.id} class="material-symbols-outlined ">
+            <span  id=${movie.id} class="material-symbols-outlined">
             favorite 
             </span>
             </div>
@@ -58,7 +58,7 @@ export const renderMovieHandler = (Database) => currentData(Database).map((movie
             <li>${movie.likes ? movie.likes : '0'} Likes</li>
             </ul>
             <button id=${movie.id}>Comment</button>
-            <button id=${movie.id}>Reservation</button>
+            <button id="reserve_${movie.id}" class="reservation">Reservation</button>
             </div>
     </div>
   <span class="tooltiptext">${JSON.stringify(movie.summary)}</span>
