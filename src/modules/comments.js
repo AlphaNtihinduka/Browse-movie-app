@@ -1,5 +1,7 @@
-const postUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/m7YKVpMPjxNMTHAHFroS/comments';
-const getUrl = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/m7YKVpMPjxNMTHAHFroS/comments?item_id=movie1';
+import DEFAULT from '../../config/default.js';
+
+const postUrl = `${DEFAULT.INVOLVEMENT_API_BASEURL}/comments`;
+const getUrl = `${DEFAULT.INVOLVEMENT_API_BASEURL}/comments?item_id=1`;
 
 const commentBtn = document.querySelector('.comment-btn');
 const crossBtn = document.querySelector('.comment-cross');
@@ -11,8 +13,9 @@ const hidePopup = () => {
 
 crossBtn.addEventListener('click', hidePopup);
 
-const renderCommentPopup = (e) => {
+const renderCommentPopup = async (e) => {
   // const movieId = parseInt(e.target.id.split('_')[1], 10);
+  // const movie = await fetch(`${DEFAULT.MOVE_API_URL}/${movieId}`);
   const movieCard = e.target.parentElement.parentElement;
   const cardImageUrl = movieCard.firstElementChild.firstElementChild.src;
   const releaseDate = movieCard.querySelector('.premiered').innerText;
@@ -105,9 +108,9 @@ commentBtn.addEventListener('click', async (e) => {
   e.preventDefault();
   const username = document.querySelector('.name-input').value.trim();
   const comment = document.querySelector('.comment-text').value.trim();
-  const item_id = 'movie1';
+  const itemId = '1';
   if (username !== '' && comment !== '') {
-    await addComment({ username, comment, item_id });
+    await addComment({ item_id: itemId, username, comment });
     insertComment();
   }
   document.getElementById('comment-form').reset();

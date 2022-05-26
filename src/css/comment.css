@@ -28,6 +28,7 @@
 }
 
 .popup-wrapper .img-container img {
+  display: flex;
   height: 150px;
   width: 200px;
 }
