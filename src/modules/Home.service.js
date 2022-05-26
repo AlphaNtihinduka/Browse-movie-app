@@ -6,9 +6,9 @@ import {
     renderPaginationHandler,
     set,
     jump,
+    homeMovieCounter,
 } from './Home.controller.js';
 import { postLike } from './Likes.js';
-import { homeMovieCounter } from './Home.counter'
 
 const movieLists = document.querySelector('.List');
 const pagination = document.querySelector('.Pagination');
