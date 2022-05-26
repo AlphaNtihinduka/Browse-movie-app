@@ -49,17 +49,23 @@ const display = (comments) => {
   document.querySelector('.comment-holder').innerHTML = li;
 };
 
-const index = (indices) => {
+const commentCounter = (indices) => {
   let sum = 1;
   for (let i = 1; i < indices.length; i += 1) {
     sum += 1;
   }
+  return sum;
+};
+
+const commentCounterUpdate = (indices) => {
+  const sum = commentCounter(indices);
   document.querySelector('.comment-heading-container').innerHTML = ` <h3 class="comment-heading">Comments(${sum})</h3> `;
 };
+
 const insertComment = async (id) => {
   const insertDom = await getData(id);
   display(insertDom);
-  index(insertDom);
+  commentCounterUpdate(insertDom);
 };
 const renderCommentPopup = async (e) => {
   const movieId = parseInt(e.target.id.split('_')[1], 10);
