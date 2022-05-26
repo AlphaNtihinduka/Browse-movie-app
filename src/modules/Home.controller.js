@@ -51,26 +51,26 @@ export const paginationHandler = (movieList) => {
 
 export const renderMovieHandler = (Database) => currentData(Database).map((movie) => (
   ` <div class="tooltip">
-        <div class="card" id=${movie.id}>
+      <div class="card" id=${movie.id}>
         <a href=${movie.officialSite}><img src=${movie.image.medium} alt="" /></a>
         <div class="container">
-        <div class="card-header">
-            <Label>${movie.name}</Label>
+          <div class="card-header">
+            <Label class="movie-name" >${movie.name}</Label>
             <span  id=${movie.id} class="material-symbols-outlined ">
             favorite 
             </span>
-            </div>
-        <ul>
-            <li>${movie.premiered}</li>
-            <li>${movie.averageRuntime} min</li>
-            <li id=like_${movie.id}>${movie.likes ? movie.likes : '0'} Likes</li>
-            </ul>
-            <button id=comment_${movie.id}>Comment</button>
-            <button id=reserve_${movie.id}>Reservation</button>
-            </div>
-    </div>
-  <span class="tooltiptext">${JSON.stringify(movie.summary)}</span>
-</div>`
+          </div>
+          <ul>
+            <li class="premiered">${movie.premiered}</li>
+            <li class="duration">${movie.averageRuntime} min</li>
+            <li id=like_${movie.id} class="likes">${movie.likes ? movie.likes : '0'} Likes</li>
+          </ul>
+          <button id=comment_${movie.id} class="home-comment-btn">Comment</button>
+          <button id=reserve_${movie.id}>Reservation</button>
+        </div>
+      </div>
+      <span class="tooltiptext">${JSON.stringify(movie.summary)}</span>
+    </div>`
 )).join(' ');
 
 export const renderPaginationHandler = (ListOfmovies) => (`<div class="pagination">
