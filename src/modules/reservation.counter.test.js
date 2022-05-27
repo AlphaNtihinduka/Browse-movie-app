@@ -1,4 +1,4 @@
-import reservationCounter from './reservation.counter';
+import reservationCounter from './reservation.counter.js';
 
 describe('Test reservation counter', () => {
   const initialReservations = [];
