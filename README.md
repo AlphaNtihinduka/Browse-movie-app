@@ -36,15 +36,15 @@ git clone git@github.com:AlphaNtihinduka/Browse-movie-app.git
 - Twitter: [Twitterhandle](https://twitter.com/AlphaNtihinduka)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/ntihinduka-alpha-81bb7b22a/)
 
-👤 **Ntihinduka Alpha**
+👤 **Emmanuel Orji-Ihuoma**
 - GitHub: [Githubhandle](https://github.com/emmiiorji)
-- Twitter: [Twitterhandle](https://twitter.com/AlphaNtihinduka)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/ntihinduka-alpha-81bb7b22a/)
+- Twitter: [Twitterhandle](https://twitter.com/emmiiorji)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/emmanuel-orji-2a8317121)
 
-👤 **Ntihinduka Alpha**
+👤 **Gedewon Hailegebrale**
 - GitHub: [Githubhandle](https://github.com/Gedewon)
-- Twitter: [Twitterhandle](https://twitter.com/AlphaNtihinduka)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/ntihinduka-alpha-81bb7b22a/)
+- Twitter: [Twitterhandle](https://twitter.com/gedi_haile)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/gedewon/)
 
 ## 🤝Contributing
 Contributions, issues and feature requests are welcomed.
