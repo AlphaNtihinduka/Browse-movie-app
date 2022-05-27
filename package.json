@@ -7,7 +7,9 @@
         "test": "jest",
         "build:dev": "npx webpack --mode development --watch ",
         "start": "npx webpack serve --open --mode development",
-        "build:pro": "npx webpack --mode production"
+        "build": "webpack",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d dist"
     },
     "repository": {
         "type": "git",
@@ -19,7 +21,7 @@
     "bugs": {
         "url": "https://github.com/AlphaNtihinduka/Browse-movie-app/issues"
     },
-    "homepage": "https://github.com/AlphaNtihinduka/Browse-movie-app#readme",
+    "homepage": "https://AlphaNtihinduka.github.io/Browse-movie-app",
     "devDependencies": {
         "@babel/plugin-transform-modules-commonjs": "^7.17.9",
         "babel-eslint": "^10.1.0",
@@ -39,5 +41,8 @@
         "webpack": "^5.72.1",
         "webpack-cli": "^4.9.2",
         "webpack-dev-server": "^4.8.1"
+    },
+    "dependencies": {
+        "gh-pages": "^4.0.0"
     }
 }
