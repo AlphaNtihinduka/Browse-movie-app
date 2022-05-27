@@ -1,12 +1,12 @@
-# Microverse-Javascript-Capstone, Movie App
-This is a group capstone project built using HTML, CSS, and Javascript.
+# Browse Movie App
+#### This is a web application, you can use to search for all your favorite movies like Drama, Romantic, Horror, Comedy, and Action.
 > Browse-movie-app, sending and receiving data from [tvmaze API](https://www.tvmaze.com/api) from/to [Involvement API](https://www.notion.so/microverse/Involvement-API-869e60b5ad104603aa6db59e08150270)
 
 
 ## Built With
 - HTML
 - CSS
-- CSS
+- JavaScript
 - Webpack and Jest
 ​
 ## Live Demo (if available)
