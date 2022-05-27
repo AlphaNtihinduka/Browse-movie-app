@@ -9,6 +9,7 @@ import {
   homeMovieCounter,
 } from './Home.controller.js';
 import { postLike } from './Likes.js';
+import reservations from './reservation.service.js';
 
 import { commentListener } from './comments.js';
 
@@ -45,6 +46,7 @@ const HomePage = async () => {
   // - TODO render counter
   homeMovieCounter();
 
+  reservations();
   // renderCommentPopup()
   commentListener();
 
