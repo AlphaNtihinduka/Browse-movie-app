@@ -6,6 +6,4 @@ import HomePage from '../modules/Home.service.js';
   HomePage();
 
   // TODO: COMMENT
-
-  // TODO: RESERVATION
 })();
