@@ -11,11 +11,15 @@ import {
 import { postLike } from './Likes.js';
 import reservations from './reservation.service.js';
 
+import { commentListener } from './comments.js';
+
 const movieLists = document.querySelector('.List');
 const pagination = document.querySelector('.Pagination');
 
 const HomePage = async () => {
   const movieListData = await getMovieHandler();
+  // await movieData.init()
+  // const movieListData = movieData.data
   if (movieListData.length < 0) {
     // ? could use spinner component here when fetching data
     movieLists.innerHTML = 'loading';
@@ -43,6 +47,12 @@ const HomePage = async () => {
   homeMovieCounter();
 
   reservations();
+  // renderCommentPopup()
+  commentListener();
+
+  // homeCommentBtn.forEach((btn) => {
+  //   btn.addEventListener("click", renderCommentPopup)
+  // })
 
   // - TODO: end
   const previousButton = document.querySelector('.previousPage');

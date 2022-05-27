@@ -55,23 +55,22 @@ export const renderMovieHandler = (Database) => currentData(Database).map((movie
         <a href=${movie.officialSite}><img src=${movie.image.medium} alt="" class="movie-img  "/></a>
         <div class="container">
         <div class="card-header">
-            <Label>${movie.name}</Label>
+            <Label class="movie-name">${movie.name}</Label>
             <span  id=${movie.id} class="material-symbols-outlined">
             favorite 
             </span>
             </div>
         <ul>
-            <li>${movie.premiered}</li>
-            <li>${movie.averageRuntime} min</li>
-            <li id=like_${movie.id}>${movie.likes ? movie.likes : '0'} Likes</li>
+            <li class="premiered">${movie.premiered}</li>
+            <li class="duration">${movie.averageRuntime} min</li>
+            <li id=like_${movie.id} class="likes">${movie.likes ? movie.likes : '0'} Likes</li>
             </ul>
-            <button id=comment_${movie.id}>Comment</button>
+            <button id=comment_${movie.id} class="home-comment-btn">Comment</button>
             <button id=reserve_${movie.id} class="reservation">Reservation</button>
             </div>
     </div>
   <span class="tooltiptext">${JSON.stringify(movie.summary)}</span>
-</div>`
-)).join(' ');
+</div>`)).join(' ');
 
 export const renderPaginationHandler = (ListOfmovies) => (`<div class="pagination">
     <a href="#" class="previousPage">&laquo;</a>
