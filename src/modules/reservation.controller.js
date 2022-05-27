@@ -14,7 +14,9 @@ const createReservationsMarkup = (reservations) => {
 };
 
 const clearReservationForm = () => {
-
+  document.querySelector('#username').value = '';
+  document.querySelector('#date-start').value = '';
+  document.querySelector('#date-end').value = '';
 };
 
 const reserve = async (e) => {
