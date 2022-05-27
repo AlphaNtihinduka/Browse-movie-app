@@ -1,4 +1,5 @@
 import DEFAULT from '../../config/default.js';
+import reservationCounter from './reservation.counter.js';
 
 const closeModal = () => {
   document.querySelector('body').removeChild(document.querySelector('.popup-container'));
@@ -6,19 +7,59 @@ const closeModal = () => {
 
 const createReservationsMarkup = (reservations) => {
   let markup = '';
-  reservations.forEach((reservation, index) => {
-    markup += `${reservation.date_start} - ${reservation.date_end}`;
-    markup += (index < reservations.length - 1) ? '<br>' : '';
+  reservations.forEach((reservation) => {
+    markup += `<li>${reservation.date_start} - ${reservation.date_end} by ${reservation.username}</li>`;
   });
   return markup;
 };
 
+const clearReservationForm = () => {
+
+};
+
+const reserve = async (e) => {
+  e.preventDefault();
+  const movieId = parseInt(e.target.id.split('_')[1], 10);
+  const username = e.target.querySelector('#username').value;
+  const dateStart = e.target.querySelector('#date-start').value;
+  const dateEnd = e.target.querySelector('#date-end').value;
+
+  const dataObj = {
+    item_id: `${movieId}`,
+    username,
+    date_start: dateStart,
+    date_end: dateEnd,
+  };
+
+  const URL = `${DEFAULT.INVOLVEMENT_API_BASEURL}/reservations/`;
+  const response = await fetch(URL, {
+    method: 'POST',
+    body: JSON.stringify(dataObj),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
+  if (response.ok) {
+    reservationCounter.updateCounter();
+
+    const reserveContainer = document.querySelector('.reserve-popup .reservations ul');
+    const newItem = document.createElement('li');
+    newItem.innerHTML = createReservationsMarkup([dataObj]);
+
+    reserveContainer.appendChild(newItem);
+    reserveContainer.previousElementSibling.innerHTML = `Reservations(${reservationCounter.length})`;
+    clearReservationForm();
+  }
+};
+
 const renderReservationPopup = async (e) => {
   const movieId = parseInt(e.target.id.split('_')[1], 10);
-  let response = await fetch(`${DEFAULT.MOVE_API_URL}/${movieId}`);
+  const response = await fetch(`${DEFAULT.MOVE_API_URL}/${movieId}`);
   const movie = await response.json();
-  response = await fetch(`${DEFAULT.INVOLVEMENT_API_BASEURL}/reservations?item_id=${movieId}`);
-  const reservations = response.ok ? await response.json() : [];
+  const result = await fetch(`${DEFAULT.INVOLVEMENT_API_BASEURL}/reservations?item_id=${movieId}`);
+  const reservations = result.ok ? await result.json() : [];
+
+  reservationCounter.init(reservations);
 
   const reservePopup = document.createElement('div');
   reservePopup.classList.add('popup-container');
@@ -38,15 +79,17 @@ const renderReservationPopup = async (e) => {
                               </div>
                               
                               <div class="reservations">
-                                <h2>Reservations(${reservations.length})</h2>
-                                ${createReservationsMarkup(reservations) || 'This movie has no reservation yet'}
+                                <h2>Reservations(${reservationCounter.length})</h2>
+                                <ul>
+                                  ${createReservationsMarkup(reservations) || '<li>This movie has no reservation yet</li>'}
+                                </ul>
                               </div>
 
-                              <form class="add-reservation">
+                              <form class="add-reservation" id="add-reservation_${movieId}">
                                 <h2>Add a reservation</h2>
-                                <input type="text" placeholder="Enter your name" required>
-                                <input type="date" required>
-                                <input type="date" required>
+                                <input type="text" id="username" placeholder="Enter your name" required>
+                                <input type="date" id="date-start" required>
+                                <input type="date" id="date-end" required>
                                 <input type="submit" value="Reserve">
                               </form>
                             </div>
@@ -56,10 +99,7 @@ const renderReservationPopup = async (e) => {
   document.querySelector('body').appendChild(reservePopup);
 
   document.querySelector('.material-symbols-outlined.close').addEventListener('click', closeModal);
+  document.querySelector('.reserve-popup .add-reservation').addEventListener('submit', reserve);
 };
-
-// const requestReservation = async () => {
-//   const data = fetch()
-// };
 
 export default renderReservationPopup;
