@@ -3,7 +3,7 @@ class ReservationCounter {
     this.length = 0;
   }
 
-  async init(nodeList) {
+  init(nodeList) {
     this.length = nodeList.length;
   }
 
