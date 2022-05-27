@@ -260,7 +260,7 @@ footer {
   -moz-transform: scale(1.3);
 }
 
-.reserve-popup ul {
+.reserve-popup .item-details ul {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px 0;
@@ -292,6 +292,11 @@ footer {
   right: 0px;
   top: 0px;
   font-size: 30px;
+}
+
+.reservations ul {
+  flex-direction: column;
+  gap: 3px;
 }
 
 .add-reservation {
