@@ -1,4 +1,5 @@
 import DEFAULT from '../../config/default.js';
+import commentCounter from './commentCounter.js';
 
 const postUrl = `${DEFAULT.INVOLVEMENT_API_BASEURL}/comments`;
 
@@ -49,14 +50,6 @@ const display = (comments) => {
   document.querySelector('.comment-holder').innerHTML = li;
 };
 
-const commentCounter = (indices) => {
-  let sum = 1;
-  for (let i = 1; i < indices.length; i += 1) {
-    sum += 1;
-  }
-  return sum;
-};
-
 const commentCounterUpdate = (indices) => {
   const sum = commentCounter(indices);
   document.querySelector('.comment-heading-container').innerHTML = ` <h3 class="comment-heading">Comments(${sum})</h3> `;
@@ -69,7 +62,6 @@ const insertComment = async (id) => {
 };
 const renderCommentPopup = async (e) => {
   const movieId = parseInt(e.target.id.split('_')[1], 10);
-  // const movie = await fetch(`${DEFAULT.MOVE_API_URL}/${movieId}`);
   const movieCard = e.target.parentElement.parentElement;
   const cardImageUrl = movieCard.firstElementChild.firstElementChild.src;
   const releaseDate = movieCard.querySelector('.premiered').innerText;
