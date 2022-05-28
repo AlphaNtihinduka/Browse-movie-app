@@ -9,7 +9,7 @@
 - JavaScript
 - Webpack and Jest
 ​
-## Live Demo (if available)
+## Live Demo
 - Live Demo: [link](https://alphantihinduka.github.io/Browse-movie-app/);
 
 ## Getting Started
