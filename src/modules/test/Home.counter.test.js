@@ -1,4 +1,4 @@
-import counter from './Home.counter.js';
+import counter from '../Home.counter.js';
 
 describe('Home page counter method', () => {
   test('[] should return 0', () => {
